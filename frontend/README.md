@@ -1,75 +1,35 @@
-# React + TypeScript + Vite
+# Matrix frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-243447?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-243447?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-243447?logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-243447?logo=tailwindcss&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-243447?logo=nodedotjs&logoColor=white)
+![npm](https://img.shields.io/badge/npm-243447?logo=npm&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-243447?logo=eslint&logoColor=white)
 
-Currently, two official plugins are available:
+The Matrix web interface uses React, TypeScript, and Vite.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Local setup
 
-## React Compiler
+Install Node.js 24 with npm. From the repository root, run these commands.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```cmd
+cd frontend
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Open the local URL printed by Vite, usually [http://localhost:5173](http://localhost:5173). Edits to files in `src/` appear in the browser while the server is running. Press Ctrl+C to stop it.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The current frontend does not read the `API_URL` entry in `.env.sample`, so you can skip creating a frontend `.env` file. To run the API alongside the interface, open a second terminal and follow the [backend setup](../backend/README.md).
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Development commands
 
-```
+Run these from `frontend/`.
+
+| Command | Purpose |
+| --- | --- |
+| `npm run lint` | Check the source with ESLint. |
+| `npm run build` | Type-check the project and create the production build in `dist/`. |
+| `npm run preview` | Serve the production build locally after building it. |
